@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\latihanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 
@@ -24,3 +25,9 @@ Route::get('/dashboard', function () {
 Route::get('/membaca', function () {
     return view('membaca');
 });
+
+Route::get('/bermain', function () {
+    return view('bermain.game');
+});
+
+Route::get('/ayo-berlatih', [latihanController::class, 'index'])->name('ayo-berlatih');

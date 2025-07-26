@@ -135,7 +135,7 @@
     <a href="berkolaborasi" class="menu-item">AYO BERKOLABORASI</a>
     <a href="bermain" class="menu-item">AYO BERMAIN</a>
     <a href="bekerja" class="menu-item">AYO BEKERJA</a>
-    <a href="berlatih" class="menu-item">AYO BERLATIH</a>
+    <a href="ayo-berlatih" class="menu-item">AYO BERLATIH</a>
   </div>
 
 </body>
