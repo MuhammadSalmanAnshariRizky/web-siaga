@@ -2,95 +2,93 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Ayo Membaca!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Halaman 1</title>
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: 'Comic Sans MS', sans-serif;
-      background: url('gambar/banjarmasin.jpg') no-repeat center center/cover;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f9f1dc;
+      background-image: url('gambar/page1/e2.png'); /* Layer 1: background */
+      background-size: cover;
+      background-position: center;
+      font-family: sans-serif;
+      overflow: hidden;
       height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
+      position: relative;
+      cursor: pointer; /* Tunjukkan bahwa bisa diklik */
     }
 
-    .story-box {
-      width: 90%;
-      max-width: 800px;
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 20px;
-      padding: 20px;
-      margin: 40px;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    .wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
     }
 
-    .character {
-      width: 120px;
-      height: auto;
+    .sunburst {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: 1;
     }
 
-    .text {
-      flex: 1;
-      padding: 0 20px;
-      font-size: 18px;
-      color: #333;
+    .characters {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1000px;
+      z-index: 2;
     }
 
-    .left .character {
-      order: 0;
+    .text-bubble {
+      position: absolute;
+      top: 135px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      z-index: 3;
     }
 
-    .left .text {
-      text-align: left;
+    .waves-scroll {
+      position: absolute;
+      bottom: -10px;
+      height: 50vw;
+      width: 100vw;
+      z-index: 2;
     }
 
-    .right {
-      flex-direction: row-reverse;
-    }
-
-    .right .text {
-      text-align: right;
+    .gelombang,
+    .judul {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1000px;
+      z-index: 1;
     }
   </style>
 </head>
-<body>
-  <div class="story-box left" onclick="nextDialogue()">
-    <img src="gambar/banyu.png" alt="Banyu" class="character" id="char-img">
-    <div class="text" id="dialogue-text">Halo, aku Banyu! Yuk, kita jalan-jalan mengenal kotaku, Banjarmasin!</div>
+<body onclick="goToPage2()">
+  <div class="wrapper">
+    <img class="sunburst" src="gambar/page1/e1.png" alt="Sunburst">
+    <img class="characters" src="gambar/page1/e5.png" alt="Banyu dan Prof">
+    <img class="text-bubble" src="gambar/page1/e4.png" alt="Teks">
+    <img class="waves-scroll" src="gambar/page1/e3.png" alt="Ombak dan Scroll">
+    <img class="gelombang" src="gambar/page1/e6.png" alt="Gelombang">
+    <img class="judul" src="gambar/page1/e7.png" alt="Judul">
   </div>
 
   <script>
-    const dialogues = [
-      { name: "Banyu", align: "left", img: "gambar/banyu.png", text: "Halo, aku Banyu! Yuk, kita jalan-jalan mengenal kotaku, Banjarmasin!" },
-      { name: "Ayah", align: "right", img: "gambar/ayah.png", text: "Kota kita ini punya banyak sungai lho, makanya disebut Kota Seribu Sungai." },
-      { name: "Prof. Beka", align: "left", img: "gambar/beka.png", text: "Betul! Secara topografi, Banjarmasin itu dataran rendah dan banyak perairan." },
-      { name: "Banyu", align: "left", img: "gambar/banyu.png", text: "Makanya di sini rumahnya banyak yang panggung ya, Prof?" },
-      { name: "Prof. Beka", align: "left", img: "gambar/beka.png", text: "Benar sekali, supaya tidak kebanjiran saat pasang air sungai." },
-      { name: "Ayah", align: "right", img: "gambar/ayah.png", text: "Kamu hebat, Banyu! Sekarang ayo kita lanjut menjelajah lagi!" },
-      { name: "Banyu", align: "left", img: "gambar/banyu.png", text: "Siap, Ayah! Yuk teman-teman, ikuti terus ya!" }
-    ];
-
-    let index = 0;
-
-    function nextDialogue() {
-      index++;
-      if (index >= dialogues.length) {
-        index = 0; // ulang dari awal atau ubah jadi "Tamat"
-      }
-
-      const dialog = dialogues[index];
-      const box = document.querySelector('.story-box');
-      const img = document.getElementById('char-img');
-      const text = document.getElementById('dialogue-text');
-
-      // Update tampilan
-      box.className = 'story-box ' + dialog.align;
-      img.src = dialog.img;
-      img.alt = dialog.name;
-      text.textContent = dialog.text;
+    function goToPage2() {
+      window.location.href = "membaca2"; // Ganti dengan nama file halaman selanjutnya
     }
   </script>
 </body>
