@@ -315,24 +315,35 @@
 
         function mulaiTimer() {
             const timer = document.getElementById('timer');
+            const mulai = Date.now();
+            const waktuAkhir = mulai + waktu * 1000;
+
             timerInterval = setInterval(() => {
-                if (waktu <= 0) {
+                const sekarang = Date.now();
+                const sisa = Math.floor((waktuAkhir - sekarang) / 1000);
+
+                if (sisa <= 0) {
                     clearInterval(timerInterval);
-                    alert("⏰ Waktu habis! Jawaban akan diselesaikan otomatis.");
-                    selesaiUjian();
+                    timer.innerText = "00:00";
+                    Swal.fire({
+                        icon: 'info',
+                        title: '⏰ Waktu Habis!',
+                        text: 'Jawabanmu akan dikumpulkan secara otomatis.',
+                        confirmButtonText: 'Lihat Hasil'
+                    }).then(() => {
+                        selesaiUjian();
+                    });
                 } else {
-                    waktu--;
-                    const menit = Math.floor(waktu / 60);
-                    const detik = waktu % 60;
+                    const menit = Math.floor(sisa / 60);
+                    const detik = sisa % 60;
                     timer.innerText = `${String(menit).padStart(2, '0')}:${String(detik).padStart(2, '0')}`;
                 }
             }, 1000);
         }
 
 
-        // Inisialisasi
-        tampilkanSoal(currentSoal);
-        mulaiTimer();
+
+ 
     </script>
 </body>
 
