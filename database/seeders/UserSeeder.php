@@ -10,23 +10,48 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('user')->insert([
+        DB::table('users')->insert([
             [
-                'nama' => 'atul',
-                'kelas' => 'XI',
+                'id_user' => 1,
+                'nama' => 'Ahmad Fadli',
                 'peran' => 'siswa',
+                'kelas' => 'IV-A',
+                'jenis_kelamin' => 'laki-laki',
                 'password' => Hash::make('password123'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'nama' => 'admin',
+                'id_user' => 2,
+                'nama' => 'Siti Nurhaliza',
+                'peran' => 'siswa',
+                'kelas' => 'IV-A',
+                'jenis_kelamin' => 'perempuan',
+                'password' => Hash::make('password123'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id_user' => 3,
+                'nama' => 'Budi Santoso',
+                'peran' => 'siswa',
+                'kelas' => 'IV-B',
+                'jenis_kelamin' => 'laki-laki',
+                'password' => Hash::make('password123'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'id_user' => 4,
+                'nama' => 'Rizky',
+                'peran' => 'guru',
                 'kelas' => null,
-                'peran' => 'admin',
-                'password' => Hash::make('admin123'),
+                'jenis_kelamin' => 'laki-laki',
+                'password' => Hash::make('password123'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
         ]);
     }
+
 }

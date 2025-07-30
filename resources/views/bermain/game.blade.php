@@ -122,7 +122,7 @@
 
         .tempat-sampah {
             background-color: #f9fbe7;
-            border: 2px dashed #aed581;
+            border: 5px dashed #000000;
             border-radius: 16px;
             padding: 16px;
             min-height: 240px;
@@ -146,10 +146,26 @@
             margin-bottom: 12px;
         }
 
+        /* Warna khusus tiap jenis */
+        .tempat-sampah.organik {
+            background-color: #93DA97;
+            /* hijau */
+        }
+
+        .tempat-sampah.anorganik {
+            background-color: #FFDE63;
+            /* biru */
+        }
+
+        .tempat-sampah.b3 {
+            background-color: #C5172E;
+            /* merah */
+        }
+
         .tempat-sampah h3 {
             font-size: 20px;
             font-weight: bold;
-            color: #33691e;
+            color: #000000;
         }
 
         .tempat-sampah .sampah-item {
@@ -192,6 +208,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
@@ -307,24 +324,25 @@
         </div>
 
         <!-- Tempat Sampah -->
-        <div class="tempat-wrapper">
+        <div class="tempat-wrapper d-flex justify-content-center gap-4 mt-4">
 
-            <div class="tempat-sampah organik" data-jenis="organik">
-
+            <div class="tempat-sampah organik text-center" data-jenis="organik">
+                <i class="fas fa-leaf fa-3x text-success mb-2" style="color :#000000"></i>
                 <h3>Organik</h3>
             </div>
 
-            <div class="tempat-sampah anorganik" data-jenis="anorganik">
-
+            <div class="tempat-sampah anorganik text-center" data-jenis="anorganik">
+                <i class="fas fa-recycle fa-3x text-primary mb-2" style="color :#000000"></i>
                 <h3>Anorganik</h3>
             </div>
 
-            <div class="tempat-sampah b3" data-jenis="b3">
-
+            <div class="tempat-sampah b3 text-center" data-jenis="b3">
+                <i class="fas fa-skull-crossbones fa-3x text-danger mb-2" style="color :#000000"></i>
                 <h3>B3</h3>
             </div>
 
         </div>
+
         <div style="text-align: center; margin-top: 30px;">
             <button onclick="tampilkanHasil()"
                 style="padding: 12px 24px; font-size: 16px; background-color: #2e7d32; color: white; border: none; border-radius: 8px; cursor: pointer;">
@@ -332,23 +350,45 @@
             </button>
         </div>
     </div>
-    <div id="hasilPermainan" style="display: none; margin-top: 20px;">
-        <h2>Hasil Permainan</h2>
+    <div id="hasilPermainan" style="display: none; margin-top: 20px; text-align: center;">
+        <h2 style="margin-bottom: 20px;">🧾 Hasil Permainan</h2>
+
+        <div id="hasilSkor" style="margin-bottom: 30px;"></div>
+
         <div id="benarContainer" style="margin-bottom: 20px;">
-            <h3 style="color: green;">Gambar Benar</h3>
-            <div id="benarCards" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
+            <h3 style="color: green;">✅ Gambar Benar</h3>
+            <div id="benarCards" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;"></div>
         </div>
+
         <div id="salahContainer">
-            <h3 style="color: red;">Gambar Salah</h3>
-            <div id="salahCards" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
+            <h3 style="color: red;">❌ Gambar Salah</h3>
+            <div id="salahCards" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;"></div>
         </div>
     </div>
+
     <audio id="drag-audio" src="/audio/drag.mp3" preload="auto"></audio>
     <audio id="drop-audio" src="/audio/drop.mp3" preload="auto"></audio>
-    <a id='kembali' href="/dashboard"
-        style="display: none; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px; margin-top: 20px;">
-        🏠 Kembali ke halaman awal
-    </a>
+    <div id="tombol-akhir" style="display: none; margin-top: 30px; text-align: center;">
+        <a href="/dashboard" id="kembali"
+            style="margin: 10px; padding: 12px 24px; background-color: #388e3c; color: white; text-decoration: none; border-radius: 8px; font-size: 16px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);">
+            🏠 Kembali ke Halaman Awal
+        </a>
+        <button onclick="location.reload()" id="cobaLagi"
+            style="margin: 10px; padding: 12px 24px; background-color: #0288d1; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);">
+            🔄 Coba Lagi
+        </button>
+        <form id="formNilai" method="POST" action="{{ route('nilai.simpan') }}">
+            @csrf
+            <input type="hidden" name="hasil_akhir" id="inputNilai">
+            <input type="hidden" name="durasi" id="inputDurasi">
+            <input type="hidden" name="kategori" value="bermain">
+            <button type="submit" style="margin-top: 20px;" class="btn btn-success">
+                💾 Simpan Nilai
+            </button>
+        </form>
+
+    </div>
+
 
 
     <script>
@@ -479,13 +519,29 @@
         });
 
         function tampilkanHasil() {
-            // Sembunyikan area game
-            document.getElementById('konten-game').style.display = 'none'; // Ganti ID sesuai dengan elemen game kamu
-            document.getElementById('kembali').style.display = 'block';
+            clearInterval(timerInterval); // HENTIKAN TIMER SAAT SELESAI
+
+            document.getElementById('konten-game').style.display = 'none';
+            document.getElementById('tombol-akhir').style.display = 'block';
+
             const totalBenar = benarCount.organik + benarCount.anorganik + benarCount.b3;
             const skor = (totalBenar * 6.67).toFixed(0);
 
+            const durasiBermain = 600 - waktuTersisa; // dalam detik
+            const menitMain = Math.floor(durasiBermain / 60);
+            const detikMain = durasiBermain % 60;
+            const durasiFormatted = `${String(menitMain).padStart(2, '0')}:${String(detikMain).padStart(2, '0')}`;
+
             document.getElementById('hasilPermainan').style.display = 'block';
+            document.getElementById('inputNilai').value = skor;
+            document.getElementById('inputDurasi').value = durasiBermain;
+
+
+            // Tambahkan informasi skor dan durasi
+            document.getElementById('hasilSkor').innerHTML = `
+        <h3 style="color:#2e7d32;">🎯 Skor Akhir: ${skor}</h3>
+        <h4 style="color:#444;">⏱️ Durasi Bermain: ${durasiFormatted}</h4>
+    `;
 
             const benarCards = document.getElementById('benarCards');
             const salahCards = document.getElementById('salahCards');
@@ -494,22 +550,23 @@
 
             gambarSampah.forEach(gambar => {
                 const card = document.createElement('div');
-                card.style.border = '1px solid #ccc';
-                card.style.borderRadius = '8px';
+                card.style.border = '2px solid #ccc';
+                card.style.borderRadius = '10px';
                 card.style.padding = '10px';
-                card.style.width = '150px';
+                card.style.width = '140px';
                 card.style.textAlign = 'center';
-                card.style.backgroundColor = '#f9f9f9';
+                card.style.backgroundColor = '#ffffff';
+                card.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
 
                 const img = document.createElement('img');
-                img.src = gambar.src; // ✅ Tambah path folder
+                img.src = gambar.src;
                 img.alt = gambar.jenis;
                 img.style.width = '100%';
-                img.style.borderRadius = '4px';
+                img.style.borderRadius = '6px';
 
                 const label = document.createElement('p');
-                label.innerText = gambar.jenis;
-                label.style.fontWeight = 'bold';
+                label.innerText = `Jenis: ${gambar.jenis}\nDimasukkan: ${gambar.dimasukkan}`;
+                label.style.fontSize = '14px';
                 label.style.marginTop = '8px';
 
                 card.appendChild(img);
@@ -522,6 +579,7 @@
                 }
             });
         }
+
     </script>
 
 

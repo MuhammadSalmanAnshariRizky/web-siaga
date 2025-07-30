@@ -106,11 +106,19 @@
             <hr class="my-4">
             <h5 class="mb-3">Rincian Jawaban:</h5>
             <div id="rincianHasil" class="text-start"></div>
-            <a href="/dashboard" class="btn btn-primary mt-3">⬅️ Kembali ke Dashboard</a>
+
+            <form id="form-nilai" action="{{ route('nilai.latihan') }}" method="POST">
+                @csrf
+                <input type="hidden" name="hasil_akhir" id="input-hasil-akhir">
+                <input type="hidden" name="durasi" id="input-durasi">
+                <input type="hidden" name="kategori" value="berlatih">
+            </form>
+
+            <button type="submit" form="form-nilai" class="btn btn-primary mt-3">
+                ⬅️ Kembali ke Dashboard
+            </button>
         </div>
     </div>
-
-
 
     <script>
         const soalList = @json($soal);
@@ -309,6 +317,11 @@
             document.getElementById("waktuSelesai").innerText = `${menit} menit ${detik} detik`;
 
             document.getElementById("rincianHasil").innerHTML = rincianHTML;
+            // Hitung skor dan durasi
+            const skor = Math.round((benar / total) * 100);
+            document.getElementById("input-hasil-akhir").value = skor;
+            document.getElementById("input-durasi").value = durasi;
+
         }
 
         let timerInterval;
@@ -343,7 +356,7 @@
 
 
 
- 
+
     </script>
 </body>
 
