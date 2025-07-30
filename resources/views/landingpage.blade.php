@@ -176,10 +176,6 @@
   <nav>
     <div class="logo">Siaga</div>
     <ul>
-      <li><a href="">Beranda</a></li>
-      <li><a href="#">Materi</a></li>
-      <li><a href="#">Game</a></li>
-      <li><a href="#">Video</a></li>
       <li><a href="login">Masuk</a></li>
     </ul>
   </nav>
@@ -200,7 +196,7 @@
 
   <!-- FOOTER -->
   <footer>
-    &copy; 2025 Siaga Banjir | oleh Salman & Atul
+    &copy; 2025 Siaga 
   </footer>
 
 </body>

@@ -146,7 +146,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body p-0">
-                    <img src="{{ asset('gambar/poster_proyek.png') }}" alt="Poster" class="img-fluid w-100">
+                    <img src="{{ asset('gambar/kolaborasi.jpg') }}" alt="Poster" class="img-fluid w-100">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success btn-lg" data-bs-dismiss="modal">Mulai Diskusi</button>
