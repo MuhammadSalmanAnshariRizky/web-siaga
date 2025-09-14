@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Halaman 2</title>
   <style>
     * {
@@ -11,7 +12,8 @@
       box-sizing: border-box;
     }
 
-    body, html {
+    body,
+    html {
       width: 100vw;
       height: 100vh;
       overflow: hidden;
@@ -38,12 +40,14 @@
       background-color: rgba(255, 255, 255, 0.85);
       font-size: 16px;
       line-height: 1.6;
-      padding-left: 50px; /* lebih halus, hanya isi teksnya yang geser */
+      padding-left: 50px;
+      /* lebih halus, hanya isi teksnya yang geser */
       z-index: 1;
       color: black;
     }
 
-    .character, .ayah {
+    .character,
+    .ayah {
       position: absolute;
       bottom: 10px;
       width: 800px;
@@ -101,8 +105,37 @@
       color: white;
       text-align: center;
     }
+
+    @media screen and (width: 1920px) and (height: 1080px) {
+      .bubble-text-banyu {
+        top: 160px;
+        /* geser naik */
+        left: -40px;
+        /* geser kanan */
+        width: 550px;
+        /* lebih kecil biar pas */
+        font-size: 16px;
+        /* teks lebih besar dan mudah dibaca */
+        line-height: 1.4;
+        /* spasi antar baris lebih enak */
+      }
+
+      .bubble-text-ayah {
+        top: 150px;
+        left: 280px;
+        width: 550px;
+        font-size: 16px;
+        line-height: 1.4;
+      }
+
+      .speech-bubble img {
+        width: 700px;
+        /* balonnya jangan terlalu gede */
+      }
+    }
   </style>
 </head>
+
 <body>
   <!-- Background -->
   <img src="gambar/page2/g1.png" alt="Background" class="background" />
@@ -117,13 +150,15 @@
   <!-- Balon kata Banyu -->
   <div class="speech-bubble" id="banyuBubble" style="top: 45px; left: 350px;">
     <img src="gambar/page2/g4.png" alt="Balon kata Banyu" />
-    <div class="bubble-text-banyu">“Yah, kenapa dulu <br>orang-orang di <br>Banjarmasin suka <br>naik perahu?<br> Sekarang kayaknya <br>lebih banyak naik <br>motor ya.”</div>
+    <div class="bubble-text-banyu">“Yah, kenapa dulu <br>orang-orang di <br>Banjarmasin suka <br>naik perahu?<br>
+      Sekarang kayaknya <br>lebih banyak naik <br>motor ya.”</div>
   </div>
 
   <!-- Balon kata Ayah -->
   <div class="speech-bubble" id="ayahBubble" style="top: 50px; left: 360px;">
     <img src="gambar/page2/g5.png" alt="Balon kata Ayah" />
-    <div class="bubble-text-ayah">“Iya, dulu sungai itu <br>seperti jalan raya. <br>Tapi sekarang nggak <br>semua orang naik <br>perahu lagi. Sudah <br>banyak yang pakai <br>motor atau mobil.”</div>
+    <div class="bubble-text-ayah">“Iya, dulu sungai itu <br>seperti jalan raya. <br>Tapi sekarang nggak <br>semua orang
+      naik <br>perahu lagi. Sudah <br>banyak yang pakai <br>motor atau mobil.”</div>
   </div>
 
   <!-- Ombak bawah -->
@@ -164,4 +199,5 @@
     });
   </script>
 </body>
+
 </html>
