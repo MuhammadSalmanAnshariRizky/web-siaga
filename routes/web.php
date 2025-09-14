@@ -10,6 +10,7 @@ use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\registerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use Maatwebsite\Excel\Excel;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,6 +23,19 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('auth.login');
 });
+
+Route::get('/pengembang', function() {
+    return view('pengembang');
+});
+
+Route::get('/terimakasih', function () {
+    return view('terimakasih');
+});
+
+Route::get('/daftarpustaka', function () {
+    return view('daftarpustaka');
+});
+
 
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

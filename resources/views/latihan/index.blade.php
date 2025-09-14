@@ -311,7 +311,7 @@
 
             document.getElementById("soal-section").style.display = "none";
             document.getElementById("hasil-section").style.display = "block";
-            document.getElementById("skorHasil").innerText = `${Math.round((benar / total) * 100)}%`;
+            document.getElementById("skorHasil").innerText = `${Math.round((benar / total) * 100)}`;
             document.getElementById("jumlahBenar").innerText = benar;
             document.getElementById("jumlahSoal").innerText = total;
             document.getElementById("waktuSelesai").innerText = `${menit} menit ${detik} detik`;

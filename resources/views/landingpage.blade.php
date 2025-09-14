@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Siaga Banjir</title>
   <style>
     * {
@@ -20,6 +21,7 @@
       padding-bottom: 80px;
     }
 
+    /* NAVBAR */
     nav {
       background-color: #00a859;
       display: flex;
@@ -27,8 +29,9 @@
       justify-content: space-between;
       padding: 10px 30px;
       color: white;
-      position: relative;
-      z-index: 2;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     nav .logo {
@@ -43,43 +46,64 @@
       margin-right: 10px;
     }
 
-    nav ul {
+    nav ul.nav-links {
       list-style: none;
       display: flex;
-      gap: 20px;
+      gap: 25px;
     }
 
-    nav ul li a {
+    nav ul.nav-links li a {
       text-decoration: none;
       color: white;
       font-weight: bold;
-      transition: color 0.3s;
+      padding: 6px 12px;
+      border-radius: 8px;
+      transition: background 0.3s, color 0.3s;
     }
 
-    nav ul li a:hover {
+    nav ul.nav-links li a:hover {
+      background-color: #ffffff33;
       color: #ffea00;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      nav ul.nav-links {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      nav ul.nav-links li a {
+        display: block;
+        width: 100%;
+      }
     }
 
     /* AWAN */
     .cloud {
-    position: absolute;
-    height: auto;
-    opacity: 0.9;
-    z-index: 0;
+      position: absolute;
+      height: auto;
+      opacity: 0.9;
+      z-index: 0;
     }
 
     .cloud-left {
-    left: 30px;
-    top: -50px;
-    width: 280px; /* lebih kecil */
-    animation: moveCloudLeft 10s ease-in-out infinite;
+      left: 30px;
+      top: -50px;
+      width: 280px;
+      animation: moveCloudLeft 10s ease-in-out infinite;
     }
 
     .cloud-right {
-    right: 30px;
-    top: -90px;
-    width: 360px; /* lebih besar */
-    animation: moveCloudRight 10s ease-in-out infinite;
+      right: 30px;
+      top: -90px;
+      width: 360px;
+      animation: moveCloudRight 10s ease-in-out infinite;
     }
 
     @keyframes moveCloudLeft {
@@ -95,14 +119,14 @@
     }
 
     .hero-float {
-        animation: floatUpDown 3s ease-in-out infinite;
-        }
+      animation: floatUpDown 3s ease-in-out infinite;
+    }
 
-        @keyframes floatUpDown {
-        0% { transform: translateY(0); }
-        50% { transform: translateY(-20px); }
-        100% { transform: translateY(0); }
-        }
+    @keyframes floatUpDown {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
 
     /* HERO */
     .hero {
@@ -170,12 +194,16 @@
     }
   </style>
 </head>
+
 <body>
 
-  <!-- NAVIGASI -->
+  <!-- NAVBAR -->
   <nav>
     <div class="logo">Siaga</div>
-    <ul>
+    <ul class="nav-links">
+      <li><a href="/pengembang">Tim Pengembang</a></li>
+      <li><a href="/terimakasih">Ucapan Terima Kasih</a></li>
+      <li><a href="/daftarpustaka">Daftar Pustaka</a></li>
       <li><a href="login">Masuk</a></li>
     </ul>
   </nav>
@@ -196,8 +224,9 @@
 
   <!-- FOOTER -->
   <footer>
-    &copy; 2025 Siaga 
+    &copy; 2025 Siaga
   </footer>
 
 </body>
+
 </html>
