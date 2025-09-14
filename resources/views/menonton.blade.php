@@ -92,11 +92,11 @@
 
   <div class="screen">
     <video id="video1" controls muted>
-      <source src="{{ asset('video/video_pertama.mp4') }}" type="video/mp4">
+      <source src="https://raw.githubusercontent.com/MuhammadSalmanAnshariRizky/asset_salman/main/video_pertama.mp4" type="video/mp4">
       Browser Anda tidak mendukung video HTML5.
     </video>
     <video id="video2" controls muted style="display: none;">
-      <source src="{{ asset('video/video_kedua.mp4') }}" type="video/mp4">
+      <source src="https://raw.githubusercontent.com/MuhammadSalmanAnshariRizky/asset_salman/main/video_kedua.mp4" type="video/mp4">
       Browser Anda tidak mendukung video HTML5.
     </video>
   </div>

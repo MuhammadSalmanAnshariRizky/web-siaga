@@ -366,8 +366,8 @@
         </div>
     </div>
 
-    <audio id="drag-audio" src="/audio/drag.mp3" preload="auto"></audio>
-    <audio id="drop-audio" src="/audio/drop.mp3" preload="auto"></audio>
+    <audio id="drag-audio" src="https://raw.githubusercontent.com/MuhammadSalmanAnshariRizky/asset_salman/main/drag.mp3" preload="auto"></audio>
+    <audio id="drop-audio" src="https://raw.githubusercontent.com/MuhammadSalmanAnshariRizky/asset_salman/main/drop.mp3" preload="auto"></audio>
     <div id="tombol-akhir" style="display: none; margin-top: 30px; text-align: center;">
         <a href="/dashboard" id="kembali"
             style="margin: 10px; padding: 12px 24px; background-color: #388e3c; color: white; text-decoration: none; border-radius: 8px; font-size: 16px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);">
